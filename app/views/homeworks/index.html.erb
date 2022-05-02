@@ -1,0 +1,22 @@
+<h1>HOMEWORK</h1>
+<div class="">
+  <%= form_with url: homeworks_path, method: :get do |form| %>
+    <%= form.select :group_id, options_from_collection_for_select(@groups, "id", "name",@group.id) %>
+    <%= form.select :subject_id, options_from_collection_for_select(@subjects, "id", "name",@subject.id) %>
+    <%= form.submit "SHOW" %>
+  <% end %>
+</div>
+<div class="">
+  <table>
+    <tr>
+      <th></th>
+      <th>Student</th>
+      <%@lessons.each do |lesson|%>
+        <th><%=lesson.name%></th>
+      <%end%>
+    </tr>
+    <% @students.each_with_index do |student, index|%>
+      <%= render "student", student: student,index: index, works: []%>
+    <%end%>
+  </table>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_02_145348) do
+ActiveRecord::Schema.define(version: 2022_05_02_163548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,9 +41,53 @@ ActiveRecord::Schema.define(version: 2022_05_02_145348) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "homeworks", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "subject_id", null: false
+    t.bigint "lesson_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_homeworks_on_group_id"
+    t.index ["lesson_id"], name: "index_homeworks_on_lesson_id"
+    t.index ["subject_id"], name: "index_homeworks_on_subject_id"
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
+    t.bigint "subject_id", null: false
+    t.integer "number", default: 1, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_lessons_on_group_id"
+    t.index ["subject_id"], name: "index_lessons_on_subject_id"
+    t.index ["user_id"], name: "index_lessons_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "name"
     t.string "text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "name"
+    t.bigint "group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_students_on_group_id"
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -61,4 +105,11 @@ ActiveRecord::Schema.define(version: 2022_05_02_145348) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "homeworks", "groups"
+  add_foreign_key "homeworks", "lessons"
+  add_foreign_key "homeworks", "subjects"
+  add_foreign_key "lessons", "groups"
+  add_foreign_key "lessons", "subjects"
+  add_foreign_key "lessons", "users"
+  add_foreign_key "students", "groups"
 end
