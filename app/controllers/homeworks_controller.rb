@@ -1,4 +1,5 @@
 class HomeworksController < ApplicationController
+  before_action :authenticate_user!
   def index
     @groups = Group.all
     @group = Group.find_by(id: params[:group_id]) || @groups.first

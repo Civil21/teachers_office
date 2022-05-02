@@ -1,3 +1,5 @@
-<%=image_tag post.image%>
-<h2> <%=post.name%> </h2>
-<p><%=post.text%></p>
+<div class="col-12 col-md-4 card">
+  <%=image_tag post.image, width: 300%>
+  <h2> <%=post.name%> </h2>
+  <p><%=post.text%></p>
+</div>

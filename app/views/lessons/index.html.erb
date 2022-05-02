@@ -1,2 +1,39 @@
-<h1>Lessons#index</h1>
-<p>Find me in app/views/lessons/index.html.erb</p>
+<h1 class="text-center"><%=@day.strftime("%e %B, %Y")%></h1>
+<%8.times do |i|%>
+  <%i +=1%>
+  <% lesson = @lessons.where(number: i) %>
+  <%= link_to "#{i} lesson", ""%>
+<%end%>
+<% @lessons.each do |lesson| %>
+  <% group = lesson.group%>
+  <div class="" id="lesson_<%=lesson.number%>">
+    <div class="">
+      group: <%=lesson.group.name%>
+      subject: <%=lesson.subject.name%>
+      <%= form_for lesson do |form| %>
+        <%= form.text_field :topic %>
+      <% end %>
+      homework <button class="btn btn-info" type="button" name="button">Add homework</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>GPA</th>
+          <th>In present</th>
+          <th>Test</th>
+          <th>Classwork</th>
+          <th>Comment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% group.students.each_with_index do |student, index|%>
+          <%= render "student", student: student, index:index%>
+        <%end%>
+      </tbody>
+      <tr>
+      </tr>
+    </table>
+  </div>
+<%end%>

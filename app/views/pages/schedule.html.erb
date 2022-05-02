@@ -1,0 +1,37 @@
+<h1 class="text-center">SCHEDULE</h1>
+<div class="text-center">
+  <%=link_to "<- PREV", schedule_path(date: @prev_week)%>
+  <%= @beginning_of_week.day%>-<%= @end_of_week.day%> <%=@beginning_of_week.strftime('%B %Y')%>
+  <%=link_to "NEXT ->", schedule_path(date: @next_week)%>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>8:00 - 9:20</th>
+      <th>9:40 - 11:00</th>
+      <th>11:20 - 12:40</th>
+      <th>13:00 - 14:20</th>
+      <th>14:40 - 16:00</th>
+      <th>16:20 - 17:40</th>
+      <th>18:00 - 19:20</th>
+      <th>19:40 - 21:00</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% 7.times do %>
+      <tr>
+        <td><%=@day.strftime("%a")%></td>
+        <% 8.times do |j|%>
+          <td class="text-center">
+            -
+            <% @lessons.where(number: j,event_at: @day).each do |lesson|%>
+              <%=lesson.subject.name %>
+            <% end %>
+          </td>
+        <%end%>
+        <% @day = @day.tomorrow%>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
