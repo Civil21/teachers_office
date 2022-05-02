@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Navbar</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to root_path, class:"nav-link"  do %>
+            ГОЛОВНА
+          <%end%>
+        </li>
+        <li class="nav-item">
+          <%= link_to "root_path", class:"nav-link"  do %>
+            ПАРА
+          <%end%>
+        </li>
+        <li class="nav-item">
+          <%= link_to "root_path", class:"nav-link"  do %>
+            РОЗКЛАД
+          <%end%>
+        </li>
+        <li class="nav-item">
+          <%= link_to "", class:"nav-link"  do %>
+            ПРАКТИКА
+          <%end%>
+        </li>
+      </ul>
+      <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to news_path,class:"nav-link"  do %>
+            Новини
+          <%end%>
+        </li>
+        <li class="nav-item">
+          <%= link_to profile_path, class:"nav-link"  do %>
+            Профіль
+          <%end%>
+        </li>
+        <li class="nav-item">
+          <%= link_to destroy_user_session_path, method: :delete,class:"nav-link"  do %>
+            Вихід
+          <%end%>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
