@@ -1,0 +1,17 @@
+.Box{
+    width: 100%;
+    background-color: $background-white;
+
+    &__small{
+        max-width: 500px;
+        padding: 30px;
+    }
+
+    &__radius{
+        border-radius: $border-radius;
+    }
+
+    &__opacity{
+        background-color: rgba($background-white, .85);
+    }
+}
