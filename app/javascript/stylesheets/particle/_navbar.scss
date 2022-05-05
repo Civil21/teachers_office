@@ -1,0 +1,19 @@
+.navbar{
+    background: $color-primary-dark;
+    .nav-link{
+        color: $color-neutral-line;
+        font-weight: bold;
+        &:hover{
+            color: $color-white;
+        }
+        &__active{
+            color: $color-white;
+        }
+    }
+
+    .navbar-brand{
+        color: $color-white-icon;
+        font-weight: bold;
+        font-variant: small-caps;
+    }
+}

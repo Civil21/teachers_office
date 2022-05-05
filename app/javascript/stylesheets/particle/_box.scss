@@ -1,4 +1,5 @@
 .Box{
+    $c: &;
     width: 100%;
     background-color: $background-white;
 
@@ -9,9 +10,23 @@
 
     &__radius{
         border-radius: $border-radius;
+        > #{$c}__photo{
+           border-radius: $border-radius $border-radius 0px 0px; 
+        }
     }
 
     &__opacity{
         background-color: rgba($background-white, .85);
     }
+
+    &__photo{
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    &__card{
+        height: 380px;
+    }
 }
+

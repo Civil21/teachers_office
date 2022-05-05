@@ -14,3 +14,21 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import "../stylesheets/application"
+
+document.addEventListener('turbolinks:load', () => {
+    //modal
+    const newsModal = document.getElementById('newsModal')
+    newsModal.addEventListener('show.bs.modal', function (event) {
+    //trigger
+    const card = event.relatedTarget
+    //parms
+    const title = card.getAttribute('data-bs-modalTitle')
+    const desc = card.getAttribute('data-bs-modalDesc')
+    //elements
+    const modalTitle = newsModal.querySelector('.modal__title')
+    const modalBodyText = newsModal.querySelector('.modal__text')
+
+    modalTitle.textContent = title
+    modalBodyText.textContent = desc
+    })
+});
