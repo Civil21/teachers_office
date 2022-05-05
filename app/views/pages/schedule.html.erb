@@ -4,34 +4,36 @@
   <%= @beginning_of_week.day%>-<%= @end_of_week.day%> <%=@beginning_of_week.strftime('%B %Y')%>
   <%=link_to "NEXT ->", schedule_path(date: @next_week)%>
 </div>
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>8:00 - 9:20</th>
-      <th>9:40 - 11:00</th>
-      <th>11:20 - 12:40</th>
-      <th>13:00 - 14:20</th>
-      <th>14:40 - 16:00</th>
-      <th>16:20 - 17:40</th>
-      <th>18:00 - 19:20</th>
-      <th>19:40 - 21:00</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% 7.times do %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%=@day.strftime("%a")%></td>
-        <% 8.times do |j|%>
-          <td class="text-center">
-            -
-            <% @lessons.where(number: j,event_at: @day).each do |lesson|%>
-              <%=lesson.subject.name %>
-            <% end %>
-          </td>
-        <%end%>
-        <% @day = @day.tomorrow%>
+        <th></th>
+        <th>8:00 - 9:30</th>
+        <th>9:55 - 11:30</th>
+        <th>12:00 - 13:30</th>
+        <th>13:55 - 15:15</th>
+        <th>15:25 - 16:45</th>
+        <th>16:55 - 18:05</th>
+        <th>18:00 - 19:20</th>
+        <th>19:40 - 21:00</th>
       </tr>
-    <%end%>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% 7.times do %>
+        <tr>
+          <td><%=@day.strftime("%a")%></td>
+          <% 8.times do |j|%>
+            <td class="text-center">
+              -
+              <% @lessons.where(number: j,event_at: @day).each do |lesson|%>
+                <%=lesson.subject.name %>
+              <% end %>
+            </td>
+          <%end%>
+          <% @day = @day.tomorrow%>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>

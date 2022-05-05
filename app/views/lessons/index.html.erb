@@ -15,26 +15,28 @@
       <% end %>
       homework <button class="btn btn-info" type="button" name="button">Add homework</button>
     </div>
-    <table>
-      <thead>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>GPA</th>
+            <th>In present</th>
+            <th>Test</th>
+            <th>Classwork</th>
+            <th>Comment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% group.students.each_with_index do |student, index|%>
+            <%= render "student", student: student, index:index%>
+          <%end%>
+        </tbody>
         <tr>
-          <th></th>
-          <th>Name</th>
-          <th>GPA</th>
-          <th>In present</th>
-          <th>Test</th>
-          <th>Classwork</th>
-          <th>Comment</th>
         </tr>
-      </thead>
-      <tbody>
-        <% group.students.each_with_index do |student, index|%>
-          <%= render "student", student: student, index:index%>
-        <%end%>
-      </tbody>
-      <tr>
-      </tr>
-    </table>
+      </table>
+    </div>
   </div>
 <%end%>
 
