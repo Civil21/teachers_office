@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: "pages#home"
+  root to: "posts#index"
   get 'news', to: "posts#index"
   get "profile",to: "pages#profile"
   get "schedule",to: "pages#schedule"
