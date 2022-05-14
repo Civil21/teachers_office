@@ -4,21 +4,21 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
+import "@hotwired/turbo-rails"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "bootstrap"
 
 Rails.start()
-Turbolinks.start()
 ActiveStorage.start()
 
 import "../stylesheets/application"
 
-document.addEventListener('turbolinks:load', () => {
-    //modal
-    const newsModal = document.getElementById('newsModal')
-    newsModal.addEventListener('show.bs.modal', function (event) {
+document.addEventListener('turbo:load', () => {
+  //modal
+  const newsModal = document.getElementById('newsModal')
+  if(!newsModal) return
+  newsModal.addEventListener('show.bs.modal', function(event) {
     //trigger
     const card = event.relatedTarget
     //parms
@@ -30,5 +30,5 @@ document.addEventListener('turbolinks:load', () => {
 
     modalTitle.textContent = title
     modalBodyText.textContent = desc
-    })
+  })
 });

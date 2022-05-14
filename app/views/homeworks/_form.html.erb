@@ -1,0 +1,28 @@
+<div id="<%="#{dom_id(homework.lesson)}_modal"%>">
+  <button type="button" class="btn btn__primary btn__auto" data-bs-toggle="modal" data-bs-target="#staticBackdrop<%=homework.lesson_id%>">
+    Добавити домашню роботу
+  </button>
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop<%=homework.lesson_id%>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <%= form_for homework, id: "#{dom_id(homework)}_form" do |form| %>
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <%= form.hidden_field :lesson_id %>
+            <%= form.hidden_field :group_id, value: homework.lesson.group_id %>
+            <%= form.hidden_field :subject_id, value: homework.lesson.subject_id %>
+            <%= form.file_field :file %>
+            <%= link_to "file", url_for(homework.file), target:"_blank" if !homework.new_record? && homework.file.attached? %>
+          </div>
+          <div class="modal-footer">
+            <%= form.submit class:"btn btn-primary"%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

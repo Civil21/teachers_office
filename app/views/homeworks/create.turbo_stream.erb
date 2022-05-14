@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "#{dom_id(@homework.lesson)}_modal" do %>
+  <%= render 'form', homework: @homework %>
+<% end %>

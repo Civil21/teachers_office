@@ -8,11 +8,12 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.5', '>= 6.1.5.1'
 gem 'sass-rails', '>= 6'
-gem 'turbolinks', '~> 5'
+gem 'turbo-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'webpacker', '~> 5.0'
 gem 'devise'
 gem 'activeadmin'
+gem 'arctic_admin'
 gem "image_processing", ">= 1.2"
 
 group :development, :test do

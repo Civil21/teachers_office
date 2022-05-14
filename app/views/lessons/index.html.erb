@@ -1,18 +1,25 @@
 <h1 class="text-center"><%=@day.strftime("%e %B, %Y")%></h1>
 <%8.times do |i|%>
   <%i +=1%>
-  <% lesson = @lessons.where(number: i) %>
-  <%= link_to "lesson #{i} |", ""%>
+  <% lesson = @lessons.where(number: i).first %>
+  <% if lesson%>
+    <%= link_to "lesson #{i} |"%>
+  <% else %>
+    <%= "lesson #{i} |"%>
+  <%end%>
 <%end%>
 <% @lessons.each do |lesson| %>
   <% group = lesson.group%>
   <div class="" id="lesson_<%=lesson.number%>">
     <div class="">
-      group: <%=lesson.group.name%>
-      subject: <%=lesson.subject.name%>
-      <%= form_for lesson do |form| %>
-        <%= form.text_field :topic %>
-      <% end %>
+      <div>
+        <b>group</b>: <%= lesson.group.name%>
+      </div>
+      <div>
+        <b>subject</b>: <%= lesson.subject.name%>
+      </div>
+
+      <%=render "form", lesson: lesson%>
       <button class="btn btn-info" type="button" name="button">Добавити завдання</button>
     </div>
     <div class="table-responsive">
@@ -30,7 +37,7 @@
         </thead>
         <tbody>
           <% group.students.each_with_index do |student, index|%>
-            <%= render "student", student: student, index:index%>
+            <%= render "student", student: student, index:index %>
           <%end%>
         </tbody>
         <tr>
@@ -38,27 +45,5 @@
       </table>
     </div>
   </div>
+  <%= render "homeworks/form", homework: (lesson.homework || lesson.build_homework) %>
 <%end%>
-
-<button type="button" class="btn btn__primary btn__auto" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Добавити домашню роботу
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
-  </div>
-</div>
