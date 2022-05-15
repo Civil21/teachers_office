@@ -71,6 +71,11 @@ ActiveRecord::Schema.define(version: 2022_05_02_175155) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
+    t.string "faculty"
+    t.string "specialty"
+    t.string "cource"
+    t.string "group"
+    t.string "sub_group"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -88,6 +93,7 @@ ActiveRecord::Schema.define(version: 2022_05_02_175155) do
 
   create_table "lessons", force: :cascade do |t|
     t.string "name"
+    t.string "topic"
     t.bigint "user_id", null: false
     t.bigint "group_id", null: false
     t.bigint "subject_id", null: false
@@ -108,7 +114,7 @@ ActiveRecord::Schema.define(version: 2022_05_02_175155) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.bigint "group_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

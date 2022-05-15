@@ -25,9 +25,9 @@
           <td><%=@day.strftime("%a")%></td>
           <% 8.times do |j|%>
             <td class="text-center">
-              -
-              <% @lessons.where(number: j+1,event_at: @day).each do |lesson|%>
-                <%=lesson.subject.name %>
+              
+              <% @lessons.where(number: j+1, event_at: @day).each do |lesson|%>
+                <%= lesson.subject.name%>
               <% end %>
             </td>
           <%end%>

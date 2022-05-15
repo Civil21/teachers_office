@@ -15,6 +15,7 @@ gem 'devise'
 gem 'activeadmin'
 gem 'arctic_admin'
 gem "image_processing", ">= 1.2"
+gem 'roo'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -1,11 +1,13 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def home
   end
 
   def profile
     @user = current_user
+    group_ids = @user.lessons.map(&:group_id)
+    @groups = Group.where(id: group_ids)
   end
 
   def schedule
