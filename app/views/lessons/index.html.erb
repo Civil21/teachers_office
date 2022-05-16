@@ -1,49 +1,54 @@
 <h1 class="text-center"><%=@day.strftime("%e %B, %Y")%></h1>
-<%8.times do |i|%>
-  <%i +=1%>
-  <% lesson = @lessons.where(number: i).first %>
-  <% if lesson%>
-    <%= link_to "lesson #{i} |"%>
-  <% else %>
-    <%= "lesson #{i} |"%>
+<div class="nav nav-tabs" id="nav-tab" role="tablist">
+  <%8.times do |i|%>
+    <%i +=1%>
+    <% lesson = @lessons.where(number: i).first %>
+    <% if lesson%>
+      <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#lesson_<%=i%>" type="button" role="tab" aria-controls="lesson_<%=i%>">Пара <%= i%></button>
+    <% else %>
+    <button class="nav-link disabled" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#lesson_<%=i%>" type="button" role="tab" aria-controls="lesson_<%=i%>" disabled>Пара <%= i%></button>
+    <%end%>
   <%end%>
-<%end%>
-<% @lessons.each do |lesson| %>
-  <% group = lesson.group%>
-  <div class="" id="lesson_<%=lesson.number%>">
-    <div class="">
-      <div>
-        <b>group</b>: <%= lesson.group.name%>
+</div>
+<div class="tab-content" id="myTabContent">
+  <% @lessons.each do |lesson| %>
+    <% group = lesson.group%>
+    <div class="tab-pane fade" id="lesson_<%=lesson.number%>" role="tabpanel">
+      <div class="row my-3 align-items-center justify-content-between">
+        <div class="col-12 col-md-6 col-xl-2"> 
+          <small class="color_gray d-block mb-1">Група:</small> </b> <%= lesson.group.name%>
+        </div>
+        <div class="col-12 col-md-6 col-xl-2">
+          <small class="color_gray d-block mb-1">Предмет:</small>  <%= lesson.subject.name%>
+        </div>
+        <div class="col-12 col-md-6 col-xl-5"> 
+          <%=render "form", lesson: lesson%>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3 text-end"> 
+          <%= render "homeworks/form", homework: (lesson.homework || lesson.build_homework) %>
+        </div>
       </div>
-      <div>
-        <b>subject</b>: <%= lesson.subject.name%>
-      </div>
-
-      <%=render "form", lesson: lesson%>
-      <button class="btn btn-info" type="button" name="button">Добавити завдання</button>
-    </div>
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Піб</th>
+              <th class="text-center">Присутній</th>
+              <th class="text-center">Робота в класі</th>
+              <th>Коментарь</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% group.students.each_with_index do |student, index|%>
+              <%= render "student", student: student, index:index %>
+            <%end%>
+          </tbody>
           <tr>
-            <th></th>
-            <th>Name</th>
-            <th>GPA</th>
-            <th>In present</th>
-            <th>Test</th>
-            <th>Classwork</th>
-            <th>Comment</th>
           </tr>
-        </thead>
-        <tbody>
-          <% group.students.each_with_index do |student, index|%>
-            <%= render "student", student: student, index:index %>
-          <%end%>
-        </tbody>
-        <tr>
-        </tr>
-      </table>
+        </table>
+      </div>
     </div>
-  </div>
-  <%= render "homeworks/form", homework: (lesson.homework || lesson.build_homework) %>
-<%end%>
+    
+  <%end%>
+</div>
