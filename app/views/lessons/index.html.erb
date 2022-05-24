@@ -6,7 +6,7 @@
     <% if lesson%>
       <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#lesson_<%=i%>" type="button" role="tab" aria-controls="lesson_<%=i%>">Пара <%= i%></button>
     <% else %>
-    <button class="nav-link disabled" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#lesson_<%=i%>" type="button" role="tab" aria-controls="lesson_<%=i%>" disabled>Пара <%= i%></button>
+      <button class="nav-link disabled" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#lesson_<%=i%>" type="button" role="tab" aria-controls="lesson_<%=i%>" disabled>Пара <%= i%></button>
     <%end%>
   <%end%>
 </div>
@@ -15,40 +15,39 @@
     <% group = lesson.group%>
     <div class="tab-pane fade" id="lesson_<%=lesson.number%>" role="tabpanel">
       <div class="row my-3 align-items-center justify-content-between">
-        <div class="col-12 col-md-6 col-xl-2"> 
-          <small class="color_gray d-block mb-1">Група:</small> </b> <%= lesson.group.name%>
-        </div>
         <div class="col-12 col-md-6 col-xl-2">
-          <small class="color_gray d-block mb-1">Предмет:</small>  <%= lesson.subject.name%>
-        </div>
-        <div class="col-12 col-md-6 col-xl-5"> 
-          <%=render "form", lesson: lesson%>
-        </div>
-        <div class="col-12 col-md-6 col-xl-3 text-end"> 
-          <%= render "homeworks/form", homework: (lesson.homework || lesson.build_homework) %>
-        </div>
+          <small class="color_gray d-block mb-1">Група:</small> </b> <%= lesson.group.name%>
       </div>
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>ПІБ</th>
-              <th class="text-center">Присутній</th>
-              <th class="text-center">Робота в класі</th>
-              <th>Коментарь</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% group.students.each_with_index do |student, index|%>
-              <%= render "student", student: student, index:index %>
-            <%end%>
-          </tbody>
-          <tr>
-          </tr>
-        </table>
+      <div class="col-12 col-md-6 col-xl-2">
+        <small class="color_gray d-block mb-1">Предмет:</small>  <%= lesson.subject.name%>
+      </div>
+      <div class="col-12 col-md-6 col-xl-5">
+        <%=render "form", lesson: lesson %>
+      </div>
+      <div class="col-12 col-md-6 col-xl-3 text-end">
+        <%= render "homeworks/form", homework: (lesson.homework || lesson.build_homework) %>
       </div>
     </div>
-    
-  <%end%>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>ПІБ</th>
+            <th class="text-center">Присутній</th>
+            <th class="text-center">Робота в класі</th>
+            <th>Коментарь</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% group.students.each_with_index do |student, index|%>
+            <%= render "lesson_works/lesson_work", lesson_work: LessonWork.find_or_create_by!(student: student, lesson: lesson), index:index %>
+          <%end%>
+        </tbody>
+        <tr>
+        </tr>
+      </table>
+    </div>
+  </div>
+<%end%>
 </div>

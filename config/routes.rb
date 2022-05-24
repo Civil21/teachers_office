@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :homeworks, only: %i[index create update]
   resources :lessons, only: %i[index update]
+  resources :lesson_works, only: :update
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   namespace :admin do

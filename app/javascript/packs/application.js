@@ -12,9 +12,20 @@ import "bootstrap"
 Rails.start()
 ActiveStorage.start()
 
+
 import "../stylesheets/application"
 
 document.addEventListener('turbo:load', () => {
+  //lesson_work_form
+  // document.querySelectorAll(".lesson_work_form").forEach((form) => {
+  //   console.log(form);
+  //   form.querySelectorAll("input, textarea, select").forEach((item) => {
+  //     item.addEventListener("change",()=>{
+  //       form.requestSubmit()
+  //     })
+  //   });
+  // });
+
   //modal
   const newsModal = document.getElementById('newsModal')
   if(!newsModal) return

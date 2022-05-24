@@ -1,0 +1,26 @@
+<%= form_with model: lesson_work, id:"#{dom_id(lesson_work)}_form", class:"lesson_work_form" do |f|%>
+  <!-- <td> -->
+    <%=lesson_work.student.name%>
+  <!-- </td> -->
+  <!-- <td> -->
+    <div class="field d-inline-block mx-2">
+      <%= f.radio_button :present, "yes", class:"custom_radio radio_green", id:"present_#{lesson_work.id}_yes",onchange:"this.form.requestSubmit()"%>
+      <label for="present_<%= lesson_work.id%>_yes" title="Присутній"></label>
+    </div>
+    <div class="field d-inline-block mx-2">
+      <%= f.radio_button :present, "past", class: "custom_radio radio_yellow", id:"present_#{lesson_work.id}_past",onchange:"this.form.requestSubmit()"%>
+      <label for="present_<%= lesson_work.id%>_past" title="Запізнився"></label>
+    </div>
+    <div class="field d-inline-block mx-2">
+      <%= f.radio_button :present, "no", class:"custom_radio radio_red", id: "present_#{lesson_work.id}_no",onchange:"this.form.requestSubmit()"%>
+      <label for="present_<%= lesson_work.id%>_no" title="Відсутній"></label>
+    </div>
+  <!-- </td> -->
+  <!-- <td> -->
+    <%=f.select :score, (1..5).to_a, {selected: f.object.score},{class:"form-select w-auto mx-auto", onchange:"this.form.requestSubmit()"}%>
+  <!-- </td> -->
+  <!-- <select class="" aria-label=".form-select-lg example"> -->
+  <!-- <td> -->
+    <%=f.text_area :comment, class:"form-control", rows: 3, onchange:"this.form.requestSubmit()" %>
+  <!-- </td> -->
+<%end%>
