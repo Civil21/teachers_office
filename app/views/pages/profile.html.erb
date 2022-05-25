@@ -1,11 +1,9 @@
 <h1 class="text-center">Профіль</h1>
 <h6 class="row"><small class="col-3 text-end fw-light">ПІБ:</small><%= current_user.name%></h6>
 <h6 class="row"><small class="col-3 text-end fw-light">Електронна адреса:</small><%= current_user.email%></h6>
-Groups:
-<ul>
-  <% @groups.each do |group|%>
-    <li>
-      <%=group.name%>
-    </li>
-  <%end%>
-</ul>
+<h6 class="row"> <small class="col-3 text-end fw-light">Групи:</small>
+    <% @groups.each do |group|%>
+        <%=group.name%><br>
+    <%end%>
+</h6>
+

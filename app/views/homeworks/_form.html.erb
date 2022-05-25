@@ -4,25 +4,51 @@
   </button>
   <!-- Modal -->
   <div class="modal fade" id="staticBackdrop<%=homework.lesson_id%>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <%= form_for homework, id: "#{dom_id(homework)}_form" do |form| %>
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <h5 class="modal-title text-center" id="staticBackdropLabel">Добавити завдання</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <%= form.hidden_field :lesson_id %>
             <%= form.hidden_field :group_id, value: homework.lesson.group_id %>
             <%= form.hidden_field :subject_id, value: homework.lesson.subject_id %>
-            <%= form.file_field :file %>
-            <%= link_to "file", url_for(homework.file), target:"_blank" if !homework.new_record? && homework.file.attached? %>
+            <%= form.file_field :file, class: "input_file" %>
+            <%= form.label :file, class: "btn btn__auto w-100" do%>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+              <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+            </svg>
+              <span>Вибрати файл</span>
+            <%end%>
+            <%= link_to "Прикріплений файл", url_for(homework.file), target:"_blank", class: "d-block text-center mt-3" if !homework.new_record? && homework.file.attached? %>
           </div>
           <div class="modal-footer">
-            <%= form.submit class:"btn btn-primary"%>
+            <%= form.submit "Добавити завдання", class:"btn btn__primary btn__auto w-100", data: { bs_dismiss: "modal"} %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  var inputs = document.querySelectorAll( '.input_file' );
+    Array.prototype.forEach.call( inputs, function( input )
+    {
+      var label	 = input.nextElementSibling,
+        labelVal = label.innerHTML;
+
+      input.addEventListener( 'change', function( e )
+      {
+        var fileName = '';
+        fileName = e.target.value.split( '\\' ).pop();
+        if( fileName )
+          label.querySelector( 'span' ).innerHTML = fileName;
+        else
+          label.innerHTML = labelVal;
+      });
+    });
+</script>

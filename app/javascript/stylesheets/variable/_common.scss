@@ -12,7 +12,7 @@ body {
   overflow-x: hidden;
 }
 
-a{
+a, .nav-link{
   text-decoration: none;
   color: $color-primary-dark;
   transition: all .5s ease-in;
@@ -129,5 +129,35 @@ tbody{
     td{
       vertical-align: middle;
     }
+  }
+}
+.input_file {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+  & + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: $color-primary-base;
+    background-color: $color-white;
+    border: 1px solid $color-primary-base;
+    padding: 10px 20px;
+    display: inline-block;
+    cursor: pointer;
+    &:hover {
+      background-color: $color-primary-base;
+      color: $color-white;
+    }
+    * {
+      pointer-events: none;
+    }
+  }
+  &:focus + label{
+    background-color: $color-primary-base;
+    color: $color-white;
+    outline: none;
   }
 }

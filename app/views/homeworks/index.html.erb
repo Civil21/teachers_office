@@ -1,18 +1,24 @@
 <h1 class="text-center">Перевірити завдання</h1>
-<div class="">
-  <%= form_with url: homeworks_path, method: :get do |form| %>
-    <%= form.select :group_id, options_from_collection_for_select(@groups, "id", "name",@group.id) %>
-    <%= form.select :subject_id, options_from_collection_for_select(@subjects, "id", "name",@subject.id) %>
-    <%= form.submit "SHOW" %>
+<div class="mb-3">
+  <%= form_with url: homeworks_path, method: :get, class:"d-flex" do |form| %>
+    <div class="form-floating me-3">  
+      <%= form.select :group_id, options_from_collection_for_select(@groups, "id", "name",@group.id), {}, {class: "form-select"} %>
+      <%= form.label :group_id, "Група"%>
+    </div>
+    <div class="form-floating me-3">
+      <%= form.select :subject_id, options_from_collection_for_select(@subjects, "id", "name",@subject.id), {}, {class: "form-select"} %>
+      <%= form.label :subject_id, "Предмет"%>
+    </div>
+    <%= form.submit "Показати", class: "btn btn__outline btn__auto" %>
   <% end %>
 </div>
 <div class="table-responsive">
   <table class="table">
     <tr>
       <th></th>
-      <th>Student</th>
+      <th>Студент</th>
       <%@lessons.each do |lesson|%>
-        <th><%=lesson.name%></th>
+        <th class="text-center"><%=lesson.name%></th>
       <%end%>
     </tr>
     <% @students.each_with_index do |student, index|%>
