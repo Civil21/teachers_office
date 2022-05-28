@@ -1,7 +1,7 @@
 <h1 class="text-center">Перевірити завдання</h1>
 <div class="mb-3">
   <%= form_with url: homeworks_path, method: :get, class:"d-flex" do |form| %>
-    <div class="form-floating me-3">  
+    <div class="form-floating me-3">
       <%= form.select :group_id, options_from_collection_for_select(@groups, "id", "name",@group.id), {}, {class: "form-select"} %>
       <%= form.label :group_id, "Група"%>
     </div>
@@ -17,12 +17,15 @@
     <tr>
       <th></th>
       <th>Студент</th>
+      <th>
+        Середній бал
+      </th>
       <%@lessons.each do |lesson|%>
         <th class="text-center"><%=lesson.name%></th>
       <%end%>
     </tr>
     <% @students.each_with_index do |student, index|%>
-      <%= render "student", student: student,index: index, works: []%>
+      <%= render "student", student: student, index: index, lessons: @lessons%>
     <%end%>
   </table>
 </div>

@@ -29,22 +29,25 @@
       </div>
     </div>
     <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>ПІБ</th>
-            <th class="text-center">Присутній</th>
-            <th class="text-center">Робота в класі</th>
-            <th>Коментарь</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% group.students.each_with_index do |student, index|%>
-            <%= render "lesson_works/lesson_work", lesson_work: LessonWork.find_or_create_by!(student: student, lesson: lesson), index:index %>
-          <%end%>
-        </tbody>
-      </table>
+      <div class="row p-2">
+        <div class="col-12 col-md-1">
+        </div>
+        <div class="col-12 col-md-2">
+          ПІБ
+        </div>
+        <div class="col-12 col-md-3 text-center">
+          Присутній
+        </div>
+        <div class="col-12 col-md-2">
+          Робота в класі
+        </div>
+        <div class="col-12 col-md-4">
+          Коментарь
+        </div>
+      </div>
+      <% group.students.each_with_index do |student, index|%>
+        <%= render "lesson_works/lesson_work", lesson_work: LessonWork.find_or_create_by!(student: student, lesson: lesson), index:index %>
+      <%end%>
     </div>
   </div>
 <%end%>

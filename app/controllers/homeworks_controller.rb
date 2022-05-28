@@ -8,7 +8,7 @@ class HomeworksController < ApplicationController
     @subjects = Subject.all
     @subject = Group.find_by(id: params[:subject_id]) || @subjects.first
     @lessons = Lesson.where(group: @group, subject: @subject)
-    # @works = Work.where(group: @group, subject: @subject).group(:student)
+    # @homeworks = Homework.where(group: @group, subject: @subject)
   end
 
   def create
