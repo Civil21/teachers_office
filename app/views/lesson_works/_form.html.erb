@@ -1,12 +1,9 @@
 <%= form_with model: lesson_work, id:"#{dom_id(lesson_work)}_form", class:"lesson_work_form" do |f|%>
-  <div class="row p-2">
-    <div class="col-12 col-md-1">
-      <%=index+1%>
-    </div>
-    <div class="col-12 col-md-2">
+  <div class="row mx-0 align-items-center">
+    <div class="col-3 text-center">
       <%=lesson_work.student.name%>
     </div>
-    <div class="col-12 col-md-3 text-center">
+    <div class="col-3 text-center">
       <div class="field d-inline-block mx-2">
         <%= f.radio_button :present, "yes", class:"custom_radio radio_green", id:"present_#{lesson_work.id}_yes",onchange:"this.form.requestSubmit()"%>
         <label for="present_<%= lesson_work.id%>_yes" title="Присутній"></label>
@@ -20,11 +17,11 @@
         <label for="present_<%= lesson_work.id%>_no" title="Відсутній"></label>
       </div>
     </div>
-    <div class="col-12 col-md-2">
+    <div class="col-2 text-center">
       <%=f.select :score, (1..5).to_a, {selected: f.object.score},{class:"form-select form-select-lg w-auto mx-auto", onchange:"this.form.requestSubmit()"}%>
     </div>
-    <div class="col-12 col-md-4">
-      <%=f.text_area :comment, class:"form-control", rows: 3, onchange:"this.form.requestSubmit()" %>
+    <div class="col-4 text-center">
+      <%=f.text_area :comment, class:"form-control", rows: 2, onchange:"this.form.requestSubmit()" %>
     </div>
   </div>
 <%end%>

@@ -28,26 +28,41 @@
         <%= render "homeworks/form", homework: (lesson.homework || lesson.build_homework) %>
       </div>
     </div>
-    <div class="table-responsive">
-      <div class="row p-2">
-        <div class="col-12 col-md-1">
+    <div class="row-responsive mt-4">
+      <div class="row mx-0 fw-bold my-1">
+        <div class="col-1 text-center">
+          #
         </div>
-        <div class="col-12 col-md-2">
-          ПІБ
+        <div class="col-11">
+          <div class="row mx-0 align-items-center">
+            <div class="col-3 text-center">
+              Прізвище, ім'я
+            </div>
+            <div class="col-3 text-center">
+              Присутній
+            </div>
+            <div class="col-2 text-center">
+              Оцінка
+            </div>
+            <div class="col-4 text-center">
+              Коментар
+            </div>
+          </div>
         </div>
-        <div class="col-12 col-md-3 text-center">
-          Присутній
-        </div>
-        <div class="col-12 col-md-2">
-          Робота в класі
-        </div>
-        <div class="col-12 col-md-4">
-          Коментарь
-        </div>
+        <div class="col-12"><hr></div>
+      </div>  
+      <div class="row mx-0 align-items-center">
+        <% group.students.each_with_index do |student, index|%>
+          <div class="col-md-1 text-center ьи">
+            <%=index+1%>
+          </div>
+          <div class="col-11">
+            <%= render "lesson_works/lesson_work", lesson_work: LessonWork.find_or_create_by!(student: student, lesson: lesson), index:index %>
+          </div>
+          <div class="col-12"><hr></div>
+        <%end%>
       </div>
-      <% group.students.each_with_index do |student, index|%>
-        <%= render "lesson_works/lesson_work", lesson_work: LessonWork.find_or_create_by!(student: student, lesson: lesson), index:index %>
-      <%end%>
+
     </div>
   </div>
 <%end%>
