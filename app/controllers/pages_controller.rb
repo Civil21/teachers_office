@@ -16,7 +16,7 @@ class PagesController < ApplicationController
     @prev_week =  @beginning_of_week-1.day
     @end_of_week = date.end_of_week
     @next_week = @end_of_week+1.day
-    @lessons = current_user.lessons.where("event_at > ? AND event_at < ?",@beginning_of_week, @end_of_week)
+    @lessons = current_user.lessons.where("event_at >= ? AND event_at <= ?",@beginning_of_week, @end_of_week)
     @day = date
   end
 end
