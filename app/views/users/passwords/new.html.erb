@@ -3,7 +3,7 @@
     <h1 class="h3 text-center mb-0">Забули пароль?</h1>
   </div>
 
-  <div class="Box Box__small Box__radius Box__opacity"></div>
+  <div class="Box Box__small Box__radius Box__opacity">
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
       <%= render "users/shared/error_messages", resource: resource %>
 
@@ -13,10 +13,11 @@
       </div>
 
       <div class="actions">
-        <%= f.submit "Відправити інструкції" %>
+        <%= f.submit "Відправити інструкції", class: "btn btn__primary btn__radius" %>
       </div>
     <% end %>
-
-    <%= render "users/shared/links" %>
+    <div class=" mt-4">
+      <%= render "users/shared/links" %>
+    </div>
   </div>
 </div>
