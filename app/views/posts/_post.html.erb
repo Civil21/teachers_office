@@ -2,8 +2,8 @@
   <div class="Box Box__card Box__radius" title="Дізнатись більше" data-bs-toggle="modal" data-bs-target="#newsModal" data-bs-modalTitle="<%= post.name %>" data-bs-modalDesc="<%= post.text %>">
     <%=image_tag post.image, class: "Box__photo"%>
     <div class="p-2">
-      <h3 class="h5" title="<%= post.name %>"><%=post.name.truncate(29)%></h3>
-      <p class="m-0"><%=post.text.truncate(128)%></p>
+      <h3 class="h5 mt-1" title="<%= post.name %>"><%=post.name.truncate(40)%></h3>
+      <p class="m-0"><%=post.text.truncate(80)%></p>
     </div>
   </div>
 </div>
