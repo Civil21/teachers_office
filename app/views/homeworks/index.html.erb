@@ -15,13 +15,15 @@
 <div class="table-responsive">
   <table class="table">
     <tr>
-      <th></th>
+      <th>#</th>
       <th>Студент</th>
-      <th>
+      <th class="text-center">
         Середній бал
       </th>
       <%@lessons.each do |lesson|%>
+        <% if lesson.homework%>
         <th class="text-center"><%=lesson.name%></th>
+        <%end%>
       <%end%>
     </tr>
     <% @students.each_with_index do |student, index|%>

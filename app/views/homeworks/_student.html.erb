@@ -1,8 +1,10 @@
 <tr>
   <td><%=index+1%></td>
   <td><%=student.name%></td>
-  <td><%=student.lesson_works.average(:score)%></td>
+  <td class="text-center"><%=student.lesson_works.average(:score)%></td>
   <%lessons.each do |lesson|%>
-    <td class="text-center">-</td>
+    <% if lesson.homework%>
+      <td class="text-center">-</td>
+    <%end%>
   <%end%>
 </tr>

@@ -2,8 +2,10 @@
 <h6 class="row"><small class="col-3 text-end fw-light">ПІБ:</small><%= current_user.name%></h6>
 <h6 class="row"><small class="col-3 text-end fw-light">Електронна адреса:</small><%= current_user.email%></h6>
 <h6 class="row"> <small class="col-3 text-end fw-light">Групи:</small>
-    <% @groups.each do |group|%>
-        <%=group.name%><br>
-    <%end%>
+    <div class="col-9">
+        <% @groups.each do |group|%>
+            <span class="fw-light"><%=group.name%></span><br>
+        <%end%>
+    </div>
 </h6>
 
