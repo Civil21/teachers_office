@@ -20,13 +20,15 @@
       </tr>
     </thead>
     <tbody>
-      <% 7.times do %>
+      <% (0..6).each do %>
         <tr>
           <td class="fw-bold"><%=@day.strftime("%a")%></td>
-          <% 8.times do |j|%>
+          <% (1..8).each do |j|%>
             <td class="text-center">
               <% @lessons.where(number: j, event_at: @day).each do |lesson|%>
-                <%= lesson.subject.name%> <br><small>(<%= lesson.group.name%>)</small>
+                <%= lesson.subject.name%>
+                <br>
+                <small>(<%= lesson.group.name%>)</small>
               <% end %>
             </td>
           <%end%>
